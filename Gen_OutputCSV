@@ -1,0 +1,44 @@
+#Generate Output2.csv for cpu_mem_monitor_log
+awk '/dvr_client/ { print $0;}' cpu_mem_monitor_log > Output.csv
+sleep 10
+awk ' BEGIN{ OFS=","; print " CPU% ,Mem% "}; NR > 1{print $1, $2;}'  Output.csv  > Output1.csv
+sleep 10
+awk -F, '{$1=++i FS $1;}1' OFS=, Output1.csv > Output2.csv
+
+
+#Generata Output_a2.csv for total_cpu_log
+awk '/all/ { print $0;}' total_cpu_log > Output_a.csv
+sleep 10
+awk ' BEGIN{ OFS=","; print " %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle"}; NR > 1{print $3, $4, $5, $6,$7, $8, $9, $10, $11 ;}'  Output_a.csv  > Output_a1.csv
+sleep 10
+awk -F, '{$1=++i FS $1;}1' OFS=, Output_a1.csv > Output_a2.csv
+sleep 10
+
+#Generate Output2_iptv.csv for iptv_transmuxer_monitor_log
+awk '/iptv_transmuxer/ { print $0;}' iptv_transmuxer_log > Output_iptv.csv
+sleep 10
+awk ' BEGIN{ OFS=","; print " CPU% ,Mem% "}; NR > 1{print $1, $2;}'  Output_iptv.csv  > Output_iptv_1.csv
+sleep 10 
+awk -F, '{$1=++i FS $1;}1' OFS=, Output_iptv_1.csv > Output2_iptv.csv
+
+
+#Generate Output2_ntf.csv for ntf_server_monitor_log
+awk '/ntf_server/ { print $0;}' ntf_server_log > Output_ntf.csv
+sleep 10
+awk ' BEGIN{ OFS=","; print " CPU% ,Mem% "}; NR > 1{print $1, $2;}'  Output_ntf.csv  > Output_ntf_1.csv
+sleep 10
+awk -F, '{$1=++i FS $1;}1' OFS=, Output_ntf_1.csv > Output2_ntf.csv
+
+#Generate Output2_crashlogmgr.csv for crashlogmgr_log
+awk '/crashlogmgr/ { print $0;}' crashlogmgr_log > Output_crashlogmgr.csv
+sleep 10
+awk ' BEGIN{ OFS=","; print " CPU% ,Mem% "}; NR > 1{print $1, $2;}'  Output_crashlogmgr.csv  > Output_crashlogmgr_1.csv
+sleep 10
+awk -F, '{$1=++i FS $1;}1' OFS=, Output_crashlogmgr_1.csv > Output2_crashlogmgr.csv 
+
+
+
+
+
+
+

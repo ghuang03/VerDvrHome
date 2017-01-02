@@ -1,0 +1,32 @@
+#!/bin/bash
+rm cpu_mem_monitor_log
+touch cpu_mem_monitor_log
+chmod 766 cpu_mem_monitor_log
+
+rm iptv_transmuxer_log
+touch iptv_transmuxer_log
+chmod 766 iptv_transmuxer_log
+
+rm ntf_server_log
+touch ntf_server_log
+chmod 766 ntf_server_log
+
+rm crashlogmgr_log
+touch crashlogmgr_log
+chmod 766 crashlogmgr_log
+
+date
+while [ 1 ]; do
+    date >> cpu_mem_monitor_log
+#     ps -C dvr_client -o %cpu >> cpu_log
+#     ps -C dvr_client -o %mem >> mem_log
+
+    ps -C dvr_client -o %cpu,%mem,cmd >> cpu_mem_monitor_log
+    ps -C iptv_transmuxer -o %cpu,%mem,cmd >> iptv_transmuxer_log
+    ps -C ntf_server -o %cpu,%mem,cmd >> ntf_server_log
+    ps -C crashlogmgr -o %cpu,%mem,cmd >> crashlogmgr_log
+    sleep 60
+
+done
+
+

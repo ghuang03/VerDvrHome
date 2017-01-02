@@ -1,0 +1,17 @@
+#!/bin/bash
+
+rm total_cpu_log
+touch total_cpu_log
+chmod 766 total_cpu_log
+date
+while [ 1 ]; do
+#    date >> total_cpu_log
+#     ps -C dvr_client -o %cpu >> cpu_log
+#     ps -C dvr_client -o %mem >> mem_log
+
+#ps -C dvr_client -o %cpu,%mem,cmd >> cpu_mem_monitor_log
+#    mpstat >> total_cpu_log
+#   sleep 60
+     sar -u 2
+done
+

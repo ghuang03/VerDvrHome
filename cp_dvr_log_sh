@@ -1,0 +1,25 @@
+#!/bin/bash
+mkdir  /hd/data/testlog
+chmod 766 /hd/data/testlog
+
+touch  ./lastwatch
+while true
+do
+#   touch  ./lastwatch
+#   sleep 10
+#   while (find /var/log/archived -type f -name 'dvr_client*' -newer ./lastwatch -exec ls -s {} \;)
+  
+   for file in /var/log/archived/dvr*.*; do
+     if [ "$file" -nt ./lastwatch ]; then 
+       cp "$file" /hd/data/testlog
+       echo "Copied $file"
+       sleep 1
+     else
+       echo "older file: $file"
+     fi
+   done
+   touch ./lastwatch
+   sleep 10
+   echo "Wake up ..."
+done
+~
